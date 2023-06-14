@@ -19,7 +19,7 @@ Composer Version: 2.5.8 - *Dependency*
 
 ### Enter folder
 
-`cd baseproject-cc`
+`cd baseproject-cc/project`
 
 ### Get .env
 
@@ -27,7 +27,7 @@ Composer Version: 2.5.8 - *Dependency*
 
 ### Run docker compose
 
-`docker compose up -d`
+`docker compose -f ../docker-compose.yaml up -d`
 
 ### Init commands with make
 
