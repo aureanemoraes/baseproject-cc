@@ -18,7 +18,9 @@ services:
     image: nginx:latest
     container_name: base-project-nginx
     networks:
-      - angranet
+      angranet:
+        aliases:
+          - baseproject-cc.desenv
     working_dir: /var/www
     volumes:
       - ..:/var/www
