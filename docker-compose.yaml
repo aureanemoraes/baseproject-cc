@@ -15,19 +15,27 @@ services:
 
   # Nginx
   base-project-nginx:
-    image: webdevops/php-nginx-dev:8.1
+    image: nginx:latest
     container_name: base-project-nginx
     networks:
       - angranet
     working_dir: /var/www
     volumes:
-      - ./project:/var/www
-      - ./project/.docker/opt/docker/etc/supervisor.d/php-fpm.conf:/opt/docker/etc/supervisor.d/php-fpm.conf
+      - ..:/var/www
+      - ./project/.docker/opt/docker/etc/nginx:/etc/nginx/conf.d
     ports:
       - "8080:80"
-    environment:
-      - WEB_DOCUMENT_ROOT=/var/www/public
-      - WEB_DOCUMENT_INDEX=index.php
+      - "443:443"
+    
+  base-php81-fpm:
+    build:
+      context: .
+      dockerfile: ./project/.docker/opt/docker/Dockerfile
+    container_name: base-php81-fpm
+    volumes:
+      - ./..:/var/www/
+    networks:
+      - angranet
 
   base-project-mysql:
     image: mysql:latest
